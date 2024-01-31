@@ -1,6 +1,6 @@
-const express = require('express');
-const db = require('../db');
-const router = express.Router();
+let express = require('express');
+let db = require('../db');
+let router = express.Router();
 
 // Exercise Log Routes
 router.post('/exercises', (req, res) => {
@@ -17,7 +17,7 @@ router.post('/exercises', (req, res) => {
 
 router.get('/exercises/:id', (req, res) => {
   // Implementation for getting exercise by ID
-  const exerciseId = req.params.id;
+  let exerciseId = req.params.id;
   db.query('SELECT * FROM exercise_log WHERE id = $1', [exerciseId], (error, result) => {
     if (error) {
       console.error(error);
@@ -27,3 +27,5 @@ router.get('/exercises/:id', (req, res) => {
     }
   });
 });
+
+module.exports = router;

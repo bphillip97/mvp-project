@@ -1,8 +1,8 @@
-const express = require('express');
-const db = require('../db');
-const router = express.Router();
+let express = require('express');
+let db = require('../db');
+let router = express.Router();
 
-// Admin Routes
+// Admin routes
 router.post('/admin', (req, res) => {
   // Implementation for creating an admin
   db.query('INSERT INTO admin (username, password) VALUES ($1, $2)', [req.body.username, req.body.password], (error, result) => {
@@ -27,3 +27,5 @@ router.get('/admin/:id', (req, res) => {
     }
   });
 });
+
+module.exports = router;

@@ -1,6 +1,6 @@
-const express = require('express');
-const db = require('../db');
-const router = express.Router();
+let express = require('express');
+let db = require('../db');
+let router = express.Router();
 
 // Weight Goals Routes
 router.post('/goals', (req, res) => {
@@ -17,7 +17,7 @@ router.post('/goals', (req, res) => {
 
 router.get('/goals/:id', (req, res) => {
   // Implementation for getting weight goal by ID
-  const goalId = req.params.id;
+  let goalId = req.params.id;
   db.query('SELECT * FROM weight_goals WHERE id = $1', [goalId], (error, result) => {
     if (error) {
       console.error(error);
@@ -27,3 +27,5 @@ router.get('/goals/:id', (req, res) => {
     }
   });
 });
+
+module.exports = router;

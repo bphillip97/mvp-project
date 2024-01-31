@@ -1,13 +1,13 @@
-import express from 'express';
-import adminRoutes from './routes/adminRoutes';
-import goalRoutes from './routes/goalRoutes';
-import exerciseRoutes from './routes/exerciseRoutes';
+let express = require('express');
+let { Pool } = require('pg');
+let adminRoutes = require('./routes/adminRoutes');
+let goalRoutes = require('./routes/goalRoutes');
+let exerciseRoutes = require('./routes/exerciseRoutes');
 
-const app = express();
-const PORT = 3000;
-
-// Use express.json() instead of body-parser
+let app = express();
+let PORT = process.env.PORT || 3000;
 app.use(express.json());
+
 
 app.use('/admin', adminRoutes);
 app.use('/goals', goalRoutes);
