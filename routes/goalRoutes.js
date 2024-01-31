@@ -1,11 +1,18 @@
-let express = require('express');
-let db = require('../db');
-let router = express.Router();
+const express = require('express');
+const db = require('../db');
+const router = express.Router();
 
 // Weight Goals Routes
 router.post('/goals', (req, res) => {
-  // Implementation for creating a weight goal
-  db.query('INSERT INTO weight_goals (user_id, goal_weight) VALUES ($1, $2)', [req.body.user_id, req.body.goal_weight], (error, result) => {
+  const { user_id, goal_weight } = req.body;
+
+  // Input validation
+  if (!user_id || !goal_weight) {
+    return res.status(400).json({ error: 'Incomplete weight goal data' });
+  }
+
+  // Insert the weight goal into the database
+  db.query('INSERT INTO weight_goals (user_id, goal_weight) VALUES ($1, $2)', [user_id, goal_weight], (error) => {
     if (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -16,13 +23,17 @@ router.post('/goals', (req, res) => {
 });
 
 router.get('/goals/:id', (req, res) => {
-  // Implementation for getting weight goal by ID
-  let goalId = req.params.id;
+  const goalId = req.params.id;
+
+  // Retrieve weight goal by ID from the database
   db.query('SELECT * FROM weight_goals WHERE id = $1', [goalId], (error, result) => {
     if (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     } else {
+      if (result.rows.length === 0) {
+        return res.status(404).json({ error: 'Weight goal not found' });
+      }
       res.status(200).json(result.rows[0]);
     }
   });
