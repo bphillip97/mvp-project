@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Fitness Tracker</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Fitness Tracker</h1>
+
+    <!-- Admin Form -->
+    <form id="adminForm">
+      <label for="adminUsername">Username:</label>
+      <input type="text" id="adminUsername" name="adminUsername" required>
+
+      <label for="adminPassword">Password:</label>
+      <input type="password" id="adminPassword" name="adminPassword" required>
+
+      <button type="button" onclick="createAdmin()">Create Admin</button>
+    </form>
+
+    <!-- Goal Form -->
+    <form id="goalForm">
+      <label for="goalUserId">User ID:</label>
+      <input type="text" id="goalUserId" name="goalUserId" required>
+
+      <label for="goalWeight">Goal Weight:</label>
+      <input type="text" id="goalWeight" name="goalWeight" required>
+
+      <button type="button" onclick="createGoal()">Set Goal</button>
+    </form>
+
+    <!-- Exercise Log Form -->
+    <form id="exerciseForm">
+      <label for="exerciseUserId">User ID:</label>
+      <input type="text" id="exerciseUserId" name="exerciseUserId" required>
+
+      <label for="exerciseName">Exercise Name:</label>
+      <input type="text" id="exerciseName" name="exerciseName" required>
+
+      <label for="exerciseDuration">Duration (minutes):</label>
+      <input type="text" id="exerciseDuration" name="exerciseDuration" required>
+
+      <label for="exerciseDate">Date:</label>
+      <input type="text" id="exerciseDate" name="exerciseDate" placeholder="YYYY-MM-DD" required>
+
+      <button type="button" onclick="logExercise()">Log Exercise</button>
+    </form>
+
+    <!-- Display Results -->
+    <div id="results"></div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
